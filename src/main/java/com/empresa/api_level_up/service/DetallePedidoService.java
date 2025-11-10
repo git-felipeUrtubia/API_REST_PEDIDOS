@@ -1,4 +1,4 @@
 package com.empresa.api_level_up.service;
 
-public class DetalleProductoService {
+public class DetallePedidoService {
 }

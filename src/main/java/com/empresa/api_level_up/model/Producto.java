@@ -21,6 +21,9 @@ public class Producto {
     @Column(nullable = false)
     private String nom_prod;
 
+    @Column(nullable = false)
+    private Double prec_prod;
+
     @OneToMany(mappedBy = "producto")
     private List<DetallePedido> detalle_pedidos;
 

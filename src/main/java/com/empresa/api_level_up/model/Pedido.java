@@ -1,5 +1,6 @@
 package com.empresa.api_level_up.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,16 +19,11 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_ped;
 
-    @Column(nullable = false)
-    private Integer num_ped;
-
     @ManyToOne
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "pedido")
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     private List<DetallePedido> detalle_pedidos;
 
-    @OneToMany(mappedBy = "pedido")
-    private List<Pago> pagos;
 
 }

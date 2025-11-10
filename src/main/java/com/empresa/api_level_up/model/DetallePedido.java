@@ -18,6 +18,9 @@ public class DetallePedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_detalle_pedido;
 
+    @Column
+    private int cant;
+
     @ManyToOne
     private Pedido pedido;
 

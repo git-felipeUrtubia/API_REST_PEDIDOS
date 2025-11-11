@@ -1,5 +1,6 @@
 package com.empresa.api_level_up.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,6 +26,7 @@ public class Producto {
     private Double prec_prod;
 
     @OneToMany(mappedBy = "producto")
+    @JsonBackReference("detalle-producto")
     private List<DetallePedido> detalle_pedidos;
 
 }

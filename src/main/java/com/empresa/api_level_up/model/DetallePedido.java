@@ -1,5 +1,7 @@
 package com.empresa.api_level_up.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,8 +24,10 @@ public class DetallePedido {
     private int cant;
 
     @ManyToOne
+    @JsonBackReference("pedido-detalle")
     private Pedido pedido;
 
     @ManyToOne
+    @JsonManagedReference("detalle-producto")
     private Producto producto;
 }

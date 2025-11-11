@@ -1,6 +1,7 @@
 package com.empresa.api_level_up.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,9 +21,11 @@ public class Pedido {
     private Long id_ped;
 
     @ManyToOne
+    @JsonManagedReference("pedido-cliente")
     private Cliente cliente;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+    @JsonManagedReference("pedido-detalle")
     private List<DetallePedido> detalle_pedidos;
 
 

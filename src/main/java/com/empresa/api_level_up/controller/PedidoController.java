@@ -1,5 +1,7 @@
 package com.empresa.api_level_up.controller;
 
+import com.empresa.api_level_up.dto.request.PedidoRequestDTO;
+import com.empresa.api_level_up.dto.response.PedidoResponseDTO;
 import com.empresa.api_level_up.model.Pedido;
 import com.empresa.api_level_up.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +19,8 @@ public class PedidoController {
     PedidoService pedidoService;
 
     @PostMapping
-    public ResponseEntity<String> crearPedido(@RequestBody Pedido pedido) {
-        String respuesta = pedidoService.crearPedido(pedido);
-        if (respuesta.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
-        return ResponseEntity.status(HttpStatus.CREATED).body(respuesta);
+    public PedidoResponseDTO crear(@RequestBody PedidoRequestDTO body) {
+        return pedidoService.crearPedido(body);
     }
 
     @GetMapping

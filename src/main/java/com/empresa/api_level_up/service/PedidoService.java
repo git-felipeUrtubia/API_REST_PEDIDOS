@@ -1,5 +1,7 @@
 package com.empresa.api_level_up.service;
 
+import com.empresa.api_level_up.dto.request.PedidoRequestDTO;
+import com.empresa.api_level_up.dto.response.PedidoResponseDTO;
 import com.empresa.api_level_up.model.Cliente;
 import com.empresa.api_level_up.model.DetallePedido;
 import com.empresa.api_level_up.model.Pedido;
@@ -25,9 +27,12 @@ public class PedidoService {
     @Autowired
     private ProductoRepository productoRepo;
 
-    public String crearPedido(Pedido pedidoEntire) {
+    public PedidoResponseDTO crearPedido(PedidoRequestDTO req) {
 
-        Cliente cliente = clienteRepo.save(pedidoEntire.getCliente());
+        Cliente cliente = new Cliente();
+        cliente.setFirst_name_cli(req.cliente.first_name_cli);
+        cliente.setLast_name_cli(req.cliente.last_name_cli);
+        clienteRepo.save(cliente);
 
         // 2) Crear pedido simple
         Pedido pedido = new Pedido();
@@ -36,11 +41,11 @@ public class PedidoService {
 
         // 3) Armar detalles: cargar precio desde Producto por id
         List<DetallePedido> detalles = new ArrayList<>();
-        for (DetallePedido dt : pedidoEntire.getDetalle_pedidos()) {
-            Producto prod = productoRepo.getReferenceById(dt.getProducto().getId_prod());
+        for (PedidoRequestDTO.ItemDTO item : req.detalle_pedidos) {
+            Producto prod = productoRepo.getReferenceById(item.id_prod);
 
             DetallePedido det = new DetallePedido();
-            det.setCant(dt.getCant());
+            det.setCant(item.cant);
             det.setPedido(pedido);
             det.setProducto(prod);
 
@@ -49,7 +54,22 @@ public class PedidoService {
         pedido.setDetalle_pedidos(detalles);
 
         pedidoRepo.save(pedido);
-        return "Pedido creado!";
+
+        PedidoResponseDTO out = new PedidoResponseDTO();
+        out.pedido_id = pedido.getId_ped();
+        out.cliente_id = pedido.getCliente().getId_cli();
+        out.items = pedido.getDetalle_pedidos().size();
+
+        for (DetallePedido d : pedido.getDetalle_pedidos()) {
+            PedidoResponseDTO.ItemDTO item = new PedidoResponseDTO.ItemDTO();
+            item.id_detalle = d.getId_detalle_pedido();
+            item.producto_id = d.getProducto().getId_prod();
+            item.cant = d.getCant();
+            item.precio = d.getProducto().getPrec_prod();
+            out.detalle.add(item);
+        }
+
+        return out;
 
     }
 

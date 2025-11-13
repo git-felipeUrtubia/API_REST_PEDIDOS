@@ -11,6 +11,7 @@ public class PedidoResponseDTO {
     public Long cliente_id;
     public int items;
     public List<ItemDTO> detalle = new ArrayList<>();
+    public List<PagoResponseDTO> pagos = new ArrayList<>();
 
     public static class ItemDTO {
         public Long id_detalle;

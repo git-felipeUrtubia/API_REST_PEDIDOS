@@ -28,5 +28,8 @@ public class Pedido {
     @JsonManagedReference("pedido-detalle")
     private List<DetallePedido> detalle_pedidos;
 
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+    @JsonManagedReference("pedido-pago")
+    private List<Pago> pago;
 
 }

@@ -38,4 +38,14 @@ public class PedidoController {
         return ResponseEntity.status(HttpStatus.OK).body(pedidos);
     }
 
+    @DeleteMapping("{id}")
+    public PedidoResponseDTO deletePedidoById(@PathVariable Long id) {
+        return pedidoService.deletePedidoById(id);
+    }
+
+    @DeleteMapping
+    public String deleteAllPedidos() {
+        return pedidoService.DeleteAllPedidos();
+    }
+
 }

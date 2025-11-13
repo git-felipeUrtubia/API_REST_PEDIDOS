@@ -6,6 +6,7 @@ public class PedidoRequestDTO {
 
     public ClienteDTO cliente;
     public List<ItemDTO> detalle_pedidos;
+    public List<PagoRequestDTO> pago;
 
     public static class ClienteDTO {
         public String first_name_cli;
@@ -17,5 +18,6 @@ public class PedidoRequestDTO {
         public Long id_prod;
         public int cant;
     }
+
 
 }

@@ -1,12 +1,12 @@
 package com.empresa.api_level_up.service;
 
+import com.empresa.api_level_up.dto.request.PagoRequestDTO;
 import com.empresa.api_level_up.dto.request.PedidoRequestDTO;
+import com.empresa.api_level_up.dto.response.PagoResponseDTO;
 import com.empresa.api_level_up.dto.response.PedidoResponseDTO;
-import com.empresa.api_level_up.model.Cliente;
-import com.empresa.api_level_up.model.DetallePedido;
-import com.empresa.api_level_up.model.Pedido;
-import com.empresa.api_level_up.model.Producto;
+import com.empresa.api_level_up.model.*;
 import com.empresa.api_level_up.repository.ClienteRepository;
+import com.empresa.api_level_up.repository.PagoRepository;
 import com.empresa.api_level_up.repository.PedidoRepository;
 import com.empresa.api_level_up.repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +26,9 @@ public class PedidoService {
 
     @Autowired
     private ProductoRepository productoRepo;
+
+    @Autowired
+    private PagoRepository pagoRepo;
 
     public PedidoResponseDTO crearPedido(PedidoRequestDTO req) {
 
@@ -52,6 +55,19 @@ public class PedidoService {
         }
         pedido.setDetalle_pedidos(detalles);
 
+        List<Pago> pagos = new ArrayList<>();
+        for(PagoRequestDTO pago : req.pago) {
+
+            Pago p = new Pago();
+            p.setMonto_total(pago.getMonto_total());
+            p.setFecha_pago(pago.getFecha_pago());
+            p.setMetodo_pago(pago.getMetodo_pago());
+            p.setPedido(pedido);
+
+            pagos.add(p);
+        }
+        pedido.setPago(pagos);
+
         pedidoRepo.save(pedido);
 
         PedidoResponseDTO out = new PedidoResponseDTO();
@@ -68,12 +84,48 @@ public class PedidoService {
             out.detalle.add(item);
         }
 
+        for (Pago p : pedido.getPago()) {
+
+            PagoResponseDTO pago = new PagoResponseDTO();
+            pago.setMonto_total(p.getMonto_total());
+            pago.setFecha_pago(p.getFecha_pago());
+            pago.setMetodo_pago(p.getMetodo_pago());
+            out.pagos.add(pago);
+
+        }
+
         return out;
 
     }
 
     public List<Pedido> listarPedidos() {
         return pedidoRepo.findAll();
+    }
+
+    public PedidoResponseDTO deletePedidoById(Long id_pedido) {
+        Pedido pedido = pedidoRepo.getReferenceById(id_pedido);
+        pedidoRepo.delete(pedido);
+
+        PedidoResponseDTO res = new PedidoResponseDTO();
+        res.pedido_id = pedido.getId_ped();
+        res.cliente_id = pedido.getCliente().getId_cli();
+        res.items = pedido.getDetalle_pedidos().size();
+        List<PedidoResponseDTO.ItemDTO> items = new ArrayList<>();
+        for (DetallePedido d : pedido.getDetalle_pedidos()) {
+            PedidoResponseDTO.ItemDTO item = new PedidoResponseDTO.ItemDTO();
+            item.id_detalle = d.getId_detalle_pedido();
+            item.producto_id = d.getProducto().getId_prod();
+            item.cant = d.getCant();
+            item.precio = d.getProducto().getPrec_prod();
+            items.add(item);
+        }
+        res.detalle = items;
+        return res;
+    }
+
+    public String DeleteAllPedidos() {
+        pedidoRepo.deleteAll();
+        return "Pedidos eliminados con exito";
     }
 
 }

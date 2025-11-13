@@ -18,10 +18,16 @@ public class PedidoController {
     @Autowired
     PedidoService pedidoService;
 
+
+
     @PostMapping
     public PedidoResponseDTO crear(@RequestBody PedidoRequestDTO body) {
         return pedidoService.crearPedido(body);
     }
+
+
+
+
 
     @GetMapping
     public ResponseEntity<List<Pedido>> listarPedidos() {

@@ -34,12 +34,11 @@ public class PedidoService {
         cliente.setLast_name_cli(req.cliente.last_name_cli);
         clienteRepo.save(cliente);
 
-        // 2) Crear pedido simple
+
         Pedido pedido = new Pedido();
         pedido.setCliente(cliente);
 
 
-        // 3) Armar detalles: cargar precio desde Producto por id
         List<DetallePedido> detalles = new ArrayList<>();
         for (PedidoRequestDTO.ItemDTO item : req.detalle_pedidos) {
             Producto prod = productoRepo.getReferenceById(item.id_prod);

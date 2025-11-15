@@ -27,8 +27,6 @@ public class PedidoService {
     @Autowired
     private ProductoRepository productoRepo;
 
-    @Autowired
-    private PagoRepository pagoRepo;
 
     public PedidoResponseDTO crearPedido(PedidoRequestDTO req) {
 
@@ -45,6 +43,9 @@ public class PedidoService {
         List<DetallePedido> detalles = new ArrayList<>();
         for (PedidoRequestDTO.ItemDTO item : req.detalle_pedidos) {
             Producto prod = productoRepo.getReferenceById(item.id_prod);
+
+            prod.setStock_prod(prod.getStock_prod() - item.cant);
+            productoRepo.save(prod);
 
             DetallePedido det = new DetallePedido();
             det.setCant(item.cant);

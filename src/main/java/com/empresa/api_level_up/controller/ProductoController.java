@@ -24,6 +24,15 @@ public class ProductoController {
         return productoService.saveProducto(req);
     }
 
+    @PostMapping("/many")
+    public ResponseEntity<String> saveManyProductos(@RequestBody List<ProductoRequestDTO> req) {
+        String res = productoService.saveManyProduct(req);
+        if(res == null) {
+            return new ResponseEntity<>("No se pudo guardar los productos", HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(res, HttpStatus.OK);
+    }
+
     @GetMapping
     public List<ProductoResponseDTO> obtenerProductos() {
         return productoService.getAllProductos();

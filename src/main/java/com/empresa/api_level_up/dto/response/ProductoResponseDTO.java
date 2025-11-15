@@ -12,6 +12,11 @@ public class ProductoResponseDTO {
 
     private Long id_producto;
     private String nomProducto;
+    private String descProducto;
     private Double precioProducto;
+    private String posterProducto;
+    private String catProducto;
+    private int stockProducto;
+
 
 }

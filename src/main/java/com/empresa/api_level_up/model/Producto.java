@@ -23,7 +23,19 @@ public class Producto {
     private String nom_prod;
 
     @Column(nullable = false)
+    private String desc_prod;
+
+    @Column(nullable = false)
     private Double prec_prod;
+
+    @Column(nullable = false)
+    private String poster_prod;
+
+    @Column(nullable = false)
+    private String cat_prod;
+
+    @Column()
+    private int stock_prod;
 
     @OneToMany(mappedBy = "producto")
     @JsonBackReference("detalle-producto")

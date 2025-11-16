@@ -25,13 +25,9 @@ public class PedidoController {
         return pedidoService.crearPedido(body);
     }
 
-
-
-
-
     @GetMapping
-    public ResponseEntity<List<Pedido>> listarPedidos() {
-        List<Pedido> pedidos = pedidoService.listarPedidos();
+    public ResponseEntity<List<PedidoResponseDTO>> listarPedidos() {
+        List<PedidoResponseDTO> pedidos = pedidoService.listarPedidos();
         if (pedidos.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }

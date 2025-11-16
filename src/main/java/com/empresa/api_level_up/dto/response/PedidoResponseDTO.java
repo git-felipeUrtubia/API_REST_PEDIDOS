@@ -14,7 +14,6 @@ public class PedidoResponseDTO {
     public List<PagoResponseDTO> pagos = new ArrayList<>();
 
     public static class ItemDTO {
-        public Long id_detalle;
         public Long producto_id;
         public int cant;
         public double precio; // precio unitario del producto

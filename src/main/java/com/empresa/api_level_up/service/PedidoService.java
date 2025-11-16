@@ -78,7 +78,6 @@ public class PedidoService {
 
         for (DetallePedido d : pedido.getDetalle_pedidos()) {
             PedidoResponseDTO.ItemDTO item = new PedidoResponseDTO.ItemDTO();
-            item.id_detalle = d.getId_detalle_pedido();
             item.producto_id = d.getProducto().getId_prod();
             item.cant = d.getCant();
             item.precio = d.getProducto().getPrec_prod();
@@ -99,8 +98,40 @@ public class PedidoService {
 
     }
 
-    public List<Pedido> listarPedidos() {
-        return pedidoRepo.findAll();
+    public List<PedidoResponseDTO> listarPedidos() {
+
+        List<Pedido> pedidos = pedidoRepo.findAll();
+        List<PedidoResponseDTO> resPedidosDTO = new ArrayList<>();
+
+        pedidos.forEach(index -> {
+            PedidoResponseDTO pedidoDTO = new PedidoResponseDTO();
+            pedidoDTO.pedido_id = index.getId_ped();
+            pedidoDTO.cliente_id = index.getCliente().getId_cli();
+            pedidoDTO.items = index.getDetalle_pedidos().size();
+
+            List<PedidoResponseDTO.ItemDTO> itemsDTO = new ArrayList<>();
+            for (DetallePedido d : index.getDetalle_pedidos()) {
+                PedidoResponseDTO.ItemDTO itemDTO = new PedidoResponseDTO.ItemDTO();
+                itemDTO.producto_id = d.getProducto().getId_prod();
+                itemDTO.cant = d.getCant();
+                itemDTO.precio = d.getProducto().getPrec_prod();
+                itemsDTO.add(itemDTO);
+            }
+            pedidoDTO.detalle = itemsDTO;
+
+            List<PagoResponseDTO> pagoDTO = new ArrayList<>();
+            for (Pago p : index.getPago()) {
+                PagoResponseDTO pago = new PagoResponseDTO();
+                pago.setId_pago(p.getId_pago());
+                pago.setMonto_total(p.getMonto_total());
+                pago.setFecha_pago(p.getFecha_pago());
+                pago.setMetodo_pago(p.getMetodo_pago());
+                pagoDTO.add(pago);
+            }
+            pedidoDTO.pagos = pagoDTO;
+            resPedidosDTO.add(pedidoDTO);
+        });
+        return resPedidosDTO;
     }
 
     public PedidoResponseDTO deletePedidoById(Long id_pedido) {
@@ -114,7 +145,6 @@ public class PedidoService {
         List<PedidoResponseDTO.ItemDTO> items = new ArrayList<>();
         for (DetallePedido d : pedido.getDetalle_pedidos()) {
             PedidoResponseDTO.ItemDTO item = new PedidoResponseDTO.ItemDTO();
-            item.id_detalle = d.getId_detalle_pedido();
             item.producto_id = d.getProducto().getId_prod();
             item.cant = d.getCant();
             item.precio = d.getProducto().getPrec_prod();

@@ -1,4 +1,40 @@
 package com.empresa.api_level_up.model;
 
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "user")
 public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id_user;
+
+    @Column(nullable = false)
+    private String email_user;
+
+    @Column(nullable = false)
+    private String password_user;
+
+    @Column(nullable = false)
+    private String rol_user;
+
+    @JsonManagedReference("user-cliente")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Cliente cliente;
+
+    @JsonManagedReference("user-token")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Token> tokens;
+
 }

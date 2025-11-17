@@ -32,4 +32,8 @@ public class Cliente {
     @JsonBackReference("pedido-cliente")
     private List<Pedido> pedidos;
 
+    @JsonBackReference("user-cliente")
+    @OneToOne
+    private User user;
+
 }

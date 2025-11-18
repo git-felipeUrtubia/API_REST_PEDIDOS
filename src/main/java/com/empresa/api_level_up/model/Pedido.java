@@ -1,5 +1,6 @@
 package com.empresa.api_level_up.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -21,7 +22,7 @@ public class Pedido {
     private Long id_ped;
 
     @ManyToOne
-    @JsonManagedReference("pedido-cliente")
+    @JsonBackReference("pedido-cliente")
     private Cliente cliente;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)

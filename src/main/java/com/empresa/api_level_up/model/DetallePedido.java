@@ -28,6 +28,6 @@ public class DetallePedido {
     private Pedido pedido;
 
     @ManyToOne
-    @JsonManagedReference("detalle-producto")
+    @JsonBackReference("detalle-producto")
     private Producto producto;
 }

@@ -29,7 +29,7 @@ public class Cliente {
     private String last_name_cli;
 
     @OneToMany(mappedBy = "cliente")
-    @JsonBackReference("pedido-cliente")
+    @JsonManagedReference("pedido-cliente")
     private List<Pedido> pedidos;
 
     @JsonBackReference("user-cliente")

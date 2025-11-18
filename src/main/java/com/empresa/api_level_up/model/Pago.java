@@ -32,7 +32,7 @@ public class Pago {
     private String metodo_pago;
 
     @ManyToOne
-    @JsonBackReference("pedido_pago")
+    @JsonBackReference("pedido-pago")
     private Pedido pedido;
 
 }

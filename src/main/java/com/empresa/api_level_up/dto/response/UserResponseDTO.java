@@ -14,9 +14,10 @@ import java.util.List;
 public class UserResponseDTO {
 
     private String emailUser;
+    private String password;
     private String rolUser;
     private ClienteDTO cliente;
-    private List<Token> tokens;
+    private List<TokenDTO> tokens;
 
     @Data
     @AllArgsConstructor
@@ -24,5 +25,12 @@ public class UserResponseDTO {
     public static class ClienteDTO {
         private String firstName;
         private String lastName;
+    }
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class TokenDTO {
+        private Long id_token;
     }
 }

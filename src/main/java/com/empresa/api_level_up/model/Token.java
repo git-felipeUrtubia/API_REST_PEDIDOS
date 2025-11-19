@@ -2,6 +2,7 @@ package com.empresa.api_level_up.model;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,6 +27,7 @@ public class Token {
     private String token;
 
     @Column(nullable = false)
+    @JsonFormat(pattern="dd-MM-yyyy")
     private LocalDate expired_token;
 
     @Column(nullable = false)

@@ -84,13 +84,15 @@ public class UserService {
                 resDTO.setCliente( cliDTO );
             }
 
-            List<Token> tokens = tokenRepo.findAll();
             List<UserResponseDTO.TokenDTO> tokenDTOs = new ArrayList<>();
+
+            List<Token> tokens = user.getTokens();
             for (Token token : tokens) {
                 UserResponseDTO.TokenDTO tokenDTO = new UserResponseDTO.TokenDTO();
                 tokenDTO.setId_token( token.getId_token() );
                 tokenDTOs.add( tokenDTO );
             }
+
             resDTO.setTokens( tokenDTOs );
 
             res.add(resDTO);

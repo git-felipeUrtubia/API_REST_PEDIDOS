@@ -27,6 +27,7 @@ public class TokenService {
         for (Token token : tokens) {
 
             TokenResponseDTO tokenDTO = new TokenResponseDTO();
+            tokenDTO.setId_token(token.getId_token());
             tokenDTO.setToken(token.getToken());
             tokenDTO.setExpired_token(token.getExpired_token());
             tokenDTO.setEstado_token(token.getEstado_token());
@@ -37,6 +38,16 @@ public class TokenService {
         return tokensDTOs;
     }
 
+    public List<TokenResponseDTO.SoloId> SoloId() {
+        List<TokenResponseDTO.SoloId> list = new ArrayList<>();
+        List<Token> tokens = tokenRepo.findAll();
+        for (Token token : tokens) {
+            TokenResponseDTO.SoloId soloId = new TokenResponseDTO.SoloId();
+            soloId.setId_token(token.getId_token());
+            list.add(soloId);
+        }
+        return list;
+    }
 
 
 }

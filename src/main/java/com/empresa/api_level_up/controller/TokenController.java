@@ -28,4 +28,13 @@ public class TokenController {
         return new ResponseEntity<>(tokens, HttpStatus.OK);
     }
 
+    @GetMapping("soloID")
+    public ResponseEntity<List<TokenResponseDTO.SoloId>> SoloId() {
+        List<TokenResponseDTO.SoloId> tokens = tokenService.SoloId();
+        if (tokens.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(tokens, HttpStatus.OK);
+    }
+
 }

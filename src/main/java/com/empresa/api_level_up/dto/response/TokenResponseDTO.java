@@ -14,10 +14,18 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class TokenResponseDTO {
 
+    private Long id_token;
     private String token;
     @JsonFormat(pattern="dd-MM-yyyy")
     private LocalDate expired_token;
     private String estado_token;
     private Long id_user;
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class SoloId {
+        Long id_token;
+    }
 
 }

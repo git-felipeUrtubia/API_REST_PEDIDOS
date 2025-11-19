@@ -33,4 +33,8 @@ public class UserResponseDTO {
     public static class TokenDTO {
         private Long id_token;
     }
+
+    public static class LoginDTO {
+
+    }
 }

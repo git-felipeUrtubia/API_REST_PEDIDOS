@@ -34,12 +34,18 @@ public class UserService {
     public UserResponseDTO saveUser(UserRequestDTO req) {
 
         User user = new User();
+        user.setFirstNameUser(req.getFirstNameUser());
+        user.setLastNameUser(req.getLastNameUser());
         user.setEmail_user( req.getEmailUser() );
         user.setPassword_user( req.getPasswordUser() );
         user.setRol_user( req.getRolUser() );
         userRepo.save( user );
 
-        if (req.getRolUser().equalsIgnoreCase("user")) {
+        if (req.getRolUser().equals("user")) {
+
+            user.setFirstNameUser(  req.getCliente().getFirstName() );
+            user.setLastNameUser(  req.getCliente().getLastName() );
+            userRepo.save( user );
 
             Cliente cliente = new Cliente();
             cliente.setFirst_name_cli(req.getCliente().getFirstName());
@@ -53,11 +59,16 @@ public class UserService {
         }
 
         UserResponseDTO res = new UserResponseDTO();
+        res.setFirstNameUser(user.getFirstNameUser());
+        res.setLastNameUser(user.getLastNameUser());
         res.setEmailUser( user.getEmail_user() );
         res.setPassword( user.getPassword_user() );
         res.setRolUser( user.getRol_user() );
 
         if(user.getRol_user().equals("user")) {
+            res.setFirstNameUser(  req.getCliente().getFirstName() );
+            res.setLastNameUser(  req.getCliente().getLastName() );
+
             UserResponseDTO.ClienteDTO cliDTO = new UserResponseDTO.ClienteDTO();
             cliDTO.setFirstName( req.getCliente().getFirstName() );
             cliDTO.setLastName( req.getCliente().getLastName() );
@@ -73,6 +84,8 @@ public class UserService {
         List<UserResponseDTO> res = new ArrayList<>();
         for (User user : users) {
             UserResponseDTO resDTO = new UserResponseDTO();
+            resDTO.setFirstNameUser(user.getFirstNameUser());
+            resDTO.setLastNameUser(user.getLastNameUser());
             resDTO.setEmailUser( user.getEmail_user() );
             resDTO.setPassword( user.getPassword_user() );
             resDTO.setRolUser( user.getRol_user() );
@@ -98,31 +111,6 @@ public class UserService {
             res.add(resDTO);
         }
         return res;
-    }
-
-    public Token findUserByEmailAndPassword(String email, String password) {
-
-        List<Token> tokens = new ArrayList<>();
-
-        List<User> users = userRepo.findAll();
-        for (User user : users) {
-            if (user.getEmail_user().equals(email) && user.getPassword_user().equals(password)) {
-                Token token = new Token();
-
-                token.setToken( UUID.randomUUID().toString() );
-                token.setExpired_token(LocalDate.now().plusDays(2));
-                token.setEstado_token("ACTIVE");
-                token.setUser( user );
-                tokens.add(token);
-
-                tokenRepo.save(token);
-                user.setTokens(tokens);
-                userRepo.save(user);
-
-                return token;
-            }
-        }
-        return null;
     }
 
 

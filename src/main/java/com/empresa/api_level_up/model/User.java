@@ -21,6 +21,12 @@ public class User {
     private Long id_user;
 
     @Column(nullable = false)
+    private String firstNameUser;
+
+    @Column(nullable = false)
+    private String lastNameUser;
+
+    @Column(nullable = false)
     private String email_user;
 
     @Column(nullable = false)

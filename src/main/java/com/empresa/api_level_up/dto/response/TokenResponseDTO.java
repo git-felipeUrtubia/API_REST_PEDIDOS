@@ -28,4 +28,18 @@ public class TokenResponseDTO {
         Long id_token;
     }
 
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class Login {
+
+        private String token;
+        @JsonFormat(pattern="dd-MM-yyyy")
+        private LocalDate expired_token;
+        private String estado_token;
+        private UserResponseDTO.userTokenLogin user;
+
+
+    }
+
 }

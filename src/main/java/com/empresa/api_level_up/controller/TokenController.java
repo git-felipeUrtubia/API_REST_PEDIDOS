@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,6 +28,19 @@ public class TokenController {
         }
         return new ResponseEntity<>(tokens, HttpStatus.OK);
     }
+
+    @GetMapping("{email}/{pass}")
+    public ResponseEntity<TokenResponseDTO.Login> findUserByEmailAndPassword(@PathVariable String email, @PathVariable String pass) {
+
+        try {
+            TokenResponseDTO.Login body = tokenService.findUserByEmailAndPassword(email, pass);
+            return ResponseEntity.ok(body);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 
     @GetMapping("soloID")
     public ResponseEntity<List<TokenResponseDTO.SoloId>> SoloId() {

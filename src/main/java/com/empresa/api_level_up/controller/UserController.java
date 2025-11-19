@@ -40,15 +40,5 @@ public class UserController {
         }
     }
 
-    @GetMapping("{email}/{pass}")
-    public ResponseEntity<Token> findUserByEmailAndPassword(@PathVariable String email, @PathVariable String pass) {
-
-        try {
-            Token body = userService.findUserByEmailAndPassword(email, pass);
-            return ResponseEntity.ok(body);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
 
 }

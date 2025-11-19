@@ -13,6 +13,8 @@ import java.util.List;
 @NoArgsConstructor
 public class UserResponseDTO {
 
+    private String firstNameUser;
+    private String lastNameUser;
     private String emailUser;
     private String password;
     private String rolUser;
@@ -34,7 +36,14 @@ public class UserResponseDTO {
         private Long id_token;
     }
 
-    public static class LoginDTO {
-
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class userTokenLogin {
+        private String firstNameUser;
+        private String lastNameUser;
+        private String emailUser;
+        private String rolUser;
     }
+
 }

@@ -91,6 +91,10 @@ public class UserService {
             resDTO.setRolUser( user.getRol_user() );
 
             if(user.getRol_user().equals("user")) {
+                if(user.getCliente() == null) {
+                    System.out.println("ERROR, ESTE USUARIO NO TIENE CLIENTE VINCULADO");
+                    System.out.println(user.getRol_user());
+                }
                 UserResponseDTO.ClienteDTO cliDTO = new UserResponseDTO.ClienteDTO();
                 cliDTO.setFirstName( user.getCliente().getFirst_name_cli() );
                 cliDTO.setLastName( user.getCliente().getLast_name_cli() );

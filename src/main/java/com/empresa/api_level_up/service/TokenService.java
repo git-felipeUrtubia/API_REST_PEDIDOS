@@ -2,8 +2,12 @@ package com.empresa.api_level_up.service;
 
 import com.empresa.api_level_up.dto.response.TokenResponseDTO;
 import com.empresa.api_level_up.dto.response.UserResponseDTO;
+import com.empresa.api_level_up.model.Cliente;
+import com.empresa.api_level_up.model.Pedido;
 import com.empresa.api_level_up.model.Token;
 import com.empresa.api_level_up.model.User;
+import com.empresa.api_level_up.repository.ClienteRepository;
+import com.empresa.api_level_up.repository.PedidoRepository;
 import com.empresa.api_level_up.repository.TokenRepository;
 import com.empresa.api_level_up.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +26,12 @@ public class TokenService {
 
     @Autowired
     UserRepository userRepo;
+
+    @Autowired
+    ClienteRepository clienteRepo;
+
+    @Autowired
+    PedidoRepository pedidoRepo;
 
     public List<TokenResponseDTO> findAll() {
 
@@ -91,6 +101,36 @@ public class TokenService {
             list.add(soloId);
         }
         return list;
+    }
+
+    public Long findIdClientByToken(String token) {
+        List<Token> tokens = tokenRepo.findAll();
+        for (Token t : tokens) {
+            if (t.getToken().equals(token)) {
+
+                List<User> users = userRepo.findAll();
+                for (User u : users) {
+                    List<Token> userTokens = u.getTokens();
+                    for (Token t2 : userTokens) {
+
+                        if(t2.getToken().equals(token)) {
+
+                            List<Cliente> clientes = clienteRepo.findAll();
+                            for (Cliente c : clientes) {
+                                if (u.getCliente().equals(c)) {
+
+                                    return c.getId_cli();
+
+                                }
+                            }
+                        }
+                    }
+
+                }
+
+            }
+        }
+        return null;
     }
 
 

@@ -18,5 +18,14 @@ public class ProductoResponseDTO {
     private String catProducto;
     private int stockProducto;
 
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static  class ProductoDTO {
+        private String nomProducto;
+        private double precioProducto;
+        private String catProducto;
+    }
+
 
 }

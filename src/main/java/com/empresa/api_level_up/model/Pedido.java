@@ -21,6 +21,9 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_ped;
 
+    @Column(nullable = false)
+    private String estado;
+
     @ManyToOne
     @JsonBackReference("pedido-cliente")
     private Cliente cliente;

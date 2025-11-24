@@ -32,7 +32,7 @@ public class PedidoResponseDTO {
 
         private Long id_pedido;
         private String estado;
-        private List<DetalleResponseDTO> detalle;
+        private DetalleResponseDTO detalle;
 
     }
 

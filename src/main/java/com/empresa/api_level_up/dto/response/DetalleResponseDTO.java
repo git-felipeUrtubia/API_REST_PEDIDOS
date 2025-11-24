@@ -11,7 +11,6 @@ import java.util.List;
 @NoArgsConstructor
 public class DetalleResponseDTO {
 
-    private int cantidad;
-    private List<ProductoResponseDTO.ProductoDTO> producto;
+    private List<ProductoResponseDTO.ProductoDTO> productos;
 
 }

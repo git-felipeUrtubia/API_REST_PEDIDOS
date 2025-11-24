@@ -225,12 +225,13 @@ public class PedidoService {
         List<Pedido> pedidosCli = cli.getPedidos();
 
         for (Pedido p : pedidosCli) {
-            PedidoResponseDTO.PedidosDTOs detalle = new PedidoResponseDTO.PedidosDTOs();
+            PedidoResponseDTO.PedidosDTOs pedidoDTO = new PedidoResponseDTO.PedidosDTOs();
 
-            detalle.setId_pedido(p.getId_ped());
-            detalle.setEstado(p.getEstado());
+            pedidoDTO.setId_pedido(p.getId_ped());
+            pedidoDTO.setEstado(p.getEstado());
 
-            List<DetalleResponseDTO> dtsDTO = new ArrayList<>();
+            DetalleResponseDTO dtDTO = new DetalleResponseDTO();
+
             List<ProductoResponseDTO.ProductoDTO> productos = new ArrayList<>();
             for (DetallePedido d : p.getDetalle_pedidos()) {
 
@@ -240,17 +241,13 @@ public class PedidoService {
                 productoDTO.setNomProducto(d.getProducto().getNom_prod());
                 productoDTO.setPrecioProducto(d.getProducto().getPrec_prod());
                 productoDTO.setCatProducto(d.getProducto().getCat_prod());
+                productoDTO.setCant(d.getCant());
                 productos.add(productoDTO);
-
-
             }
-            DetalleResponseDTO detalleDTO = new DetalleResponseDTO();
-            detalleDTO.setCantidad(productos.size());
-            detalleDTO.setProducto(productos);
-            dtsDTO.add(detalleDTO);
+            dtDTO.setProductos(productos);
+            pedidoDTO.setDetalle(dtDTO);
 
-            detalle.setDetalle(dtsDTO);
-            resPedido.add(detalle);
+            resPedido.add(pedidoDTO);
 
         }
 

@@ -25,6 +25,7 @@ public class ProductoResponseDTO {
         private String nomProducto;
         private double precioProducto;
         private String catProducto;
+        private int cant;
     }
 
 

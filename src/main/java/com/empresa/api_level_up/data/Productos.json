@@ -1,0 +1,141 @@
+[
+  {
+    "id_producto": 1,
+    "nomProducto": "Carlos del Duty",
+    "descProducto": "Una reconocida saga de videojuegos de disparos en primera persona, que comenzó en la Segunda Guerra Mundial y evolucionó hacia conflictos modernos y ficticios.",
+    "precioProducto": 1000.0,
+    "posterProducto": "/img/callOfDuty.jpeg",
+    "catProducto": "shooter",
+    "stockProducto": 3
+  },
+  {
+    "id_producto": 2,
+    "nomProducto": "Battlefield V",
+    "descProducto": "Un FPS ambientado en la Segunda Guerra Mundial, con batallas masivas multijugador y escenarios destructibles.",
+    "precioProducto": 64000.0,
+    "posterProducto": "/img/battlefield.jpg",
+    "catProducto": "shooter",
+    "stockProducto": 9
+  },
+  {
+    "id_producto": 3,
+    "nomProducto": "Medal Of Honor",
+    "descProducto": "Un shooter clásico de la Segunda Guerra Mundial que recrea misiones históricas, incluidas intensas batallas como el desembarco en Normandía.",
+    "precioProducto": 18500.0,
+    "posterProducto": "/img/medal_honor.jpg",
+    "catProducto": "shooter",
+    "stockProducto": 8
+  },
+  {
+    "nomProducto": "Resident Evil 2 Remake",
+    "descProducto": "Un clásico de terror reinventado, donde los jugadores enfrentan zombis y acertijos en la ciudad de Raccoon City con atmósfera oscura y tensión constante.",
+    "precioProducto": 16000,
+    "posterProducto": "/img/resident2.avif",
+    "catProducto": "suspenso",
+    "stockProducto": 10
+  },
+  {
+    "nomProducto": "Fatal Frame 2",
+    "descProducto": "Un survival horror japonés en el que debes usar una cámara especial para capturar y derrotar fantasmas en una aldea maldita.",
+    "precioProducto": 5990,
+    "posterProducto": "/img/fatal_frame.jpg",
+    "catProducto": "suspenso",
+    "stockProducto": 10
+  },
+  {
+    "nomProducto": "Silent Hill 2 Remake",
+    "descProducto": "Un clásico del terror psicológico donde un hombre explora la ciudad neblinosa de Silent Hill enfrentando horrores que reflejan sus propios miedos.",
+    "precioProducto": 25990,
+    "posterProducto": "/img/silentHill.jpg",
+    "catProducto": "suspenso",
+    "stockProducto": 10
+  },
+  {
+    "nomProducto": "Elden Ring",
+    "descProducto": "Un RPG de acción en mundo abierto con combates desafiantes y un vasto mundo oscuro lleno de criaturas y secretos.",
+    "precioProducto": 89990,
+    "posterProducto": "/img/eldenRing.jpg",
+    "catProducto": "RPG",
+    "stockProducto": 10
+  },
+  {
+    "nomProducto": "The Witcher 3",
+    "descProducto": "Un RPG de mundo abierto ambientado en un universo de fantasía oscura, donde encarnas a Geralt de Rivia cazando monstruos y tomando decisiones que afectan la historia.",
+    "precioProducto": 40000,
+    "posterProducto": "/img/the_witcher3.jpg",
+    "catProducto": "RPG",
+    "stockProducto": 10
+  },
+  {
+    "nomProducto": "Dark Souls 3",
+    "descProducto": "Un desafiante RPG de acción con combates intensos, jefes imponentes y un mundo sombrío interconectado lleno de secretos.",
+    "precioProducto": 28990,
+    "posterProducto": "/img/darksoul3.jpg",
+    "catProducto": "RPG",
+    "stockProducto": 10
+  },
+  {
+    "nomProducto": "Sekiro Shadows Die Twice",
+    "descProducto": "Un RPG de acción ambientado en el Japón Sengoku, con un sistema de combate basado en la precisión y la dificultad extrema.",
+    "precioProducto": 35990,
+    "posterProducto": "/img/sekiro.jpg",
+    "catProducto": "RPG",
+    "stockProducto": 10
+  },
+  {
+    "nomProducto": "Call of Duty Modern Warfare",
+    "descProducto": "Un shooter militar moderno con una campaña intensa y un modo multijugador lleno de acción.",
+    "precioProducto": 29990,
+    "posterProducto": "/img/cod_modern_warfare.jpg",
+    "catProducto": "shooter",
+    "stockProducto": 10
+  },
+  {
+    "nomProducto": "Battlefield 6",
+    "descProducto": "Un shooter bélico ambientado en la Segunda Guerra Mundial con batallas masivas y escenarios destructibles.",
+    "precioProducto": 27990,
+    "posterProducto": "/img/battlefield_6.jpg",
+    "catProducto": "shooter",
+    "stockProducto": 10
+  },
+  {
+    "nomProducto": "Doom Eternal",
+    "descProducto": "Un frenético shooter en primera persona donde enfrentas hordas de demonios con un arsenal devastador.",
+    "precioProducto": 24990,
+    "posterProducto": "/img/doom_eternal.jpeg",
+    "catProducto": "shooter",
+    "stockProducto": 10
+  },
+  {
+    "nomProducto": "Outlast",
+    "descProducto": "Un juego de terror psicológico en primera persona donde exploras un hospital psiquiátrico abandonado lleno de horrores.",
+    "precioProducto": 15990,
+    "posterProducto": "/img/outlast.jpg",
+    "catProducto": "suspenso",
+    "stockProducto": 10
+  },
+  {
+    "nomProducto": "Amnesia The Dark Descent",
+    "descProducto": "Un survival horror en primera persona donde exploras castillos oscuros mientras enfrentas criaturas y luchas contra tu propia cordura.",
+    "precioProducto": 12990,
+    "posterProducto": "/img/amnesia.jpg",
+    "catProducto": "suspenso",
+    "stockProducto": 10
+  },
+  {
+    "nomProducto": "Alan Wake",
+    "descProducto": "Un thriller psicológico en el que un escritor busca a su esposa desaparecida en un pueblo envuelto en oscuridad.",
+    "precioProducto": 17990,
+    "posterProducto": "/img/alan_wake.jpg",
+    "catProducto": "suspenso",
+    "stockProducto": 10
+  },
+  {
+    "nomProducto": "Dragon Age Inquisition",
+    "descProducto": "Un RPG de fantasía donde lideras a la Inquisición para salvar al mundo de un cataclismo, tomando decisiones que afectan profundamente el rumbo de la historia.",
+    "precioProducto": 25990,
+    "posterProducto": "/img/dragon_inquisition.jpg",
+    "catProducto": "RPG",
+    "stockProducto": 10
+  }
+]

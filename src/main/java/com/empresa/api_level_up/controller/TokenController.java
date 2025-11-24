@@ -3,6 +3,10 @@ package com.empresa.api_level_up.controller;
 import com.empresa.api_level_up.dto.response.TokenResponseDTO;
 import com.empresa.api_level_up.model.Token;
 import com.empresa.api_level_up.service.TokenService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,12 +19,18 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/tokens")
+@Tag(name = "Token", description = "Operaciones relacionadas con Tokens")
 public class TokenController {
 
     @Autowired
     TokenService tokenService;
 
     @GetMapping
+    @Operation(summary = "Obtener tokens", description = "Se obtiene una lista de tokens")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Operación exitosa"),
+            @ApiResponse(responseCode = "404", description = "Token no encontrados")
+    })
     public ResponseEntity<List<TokenResponseDTO>> findAll() {
         List<TokenResponseDTO> tokens = tokenService.findAll();
         if (tokens.isEmpty()) {
@@ -30,6 +40,11 @@ public class TokenController {
     }
 
     @GetMapping("{email}/{pass}")
+    @Operation(summary = "Obtener Token con User", description = "Se obtiene un Token con un usuario al que esta vinculado ese token")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Operación exitosa"),
+            @ApiResponse(responseCode = "404", description = "Tokens no encontrados")
+    })
     public ResponseEntity<TokenResponseDTO.Login> findUserByEmailAndPassword(@PathVariable String email, @PathVariable String pass) {
 
         try {
@@ -43,6 +58,11 @@ public class TokenController {
 
 
     @GetMapping("soloID")
+    @Operation(summary = "Obtener ID token", description = "Solo visualiza el ID de los Tokens")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Operación exitosa"),
+            @ApiResponse(responseCode = "404", description = "Tokens no encontrados")
+    })
     public ResponseEntity<List<TokenResponseDTO.SoloId>> SoloId() {
         List<TokenResponseDTO.SoloId> tokens = tokenService.SoloId();
         if (tokens.isEmpty()) {

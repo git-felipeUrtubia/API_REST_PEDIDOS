@@ -25,7 +25,11 @@ public class SecurityConfig {
                         // ✅ RUTAS PÚBLICAS
                         .requestMatchers(
                                 "/api/v1/passd/auth/solicitar-password",
-                                "/api/v1/passd/auth/recuperar-password"
+                                "/api/v1/passd/auth/recuperar-password",
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**",
+                                "/swagger-ui.html",
+                                "**"
                         ).permitAll()
 
                         // (si tienes login/registro también deberían ser públicas)

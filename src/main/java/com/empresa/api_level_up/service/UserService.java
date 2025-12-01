@@ -117,5 +117,10 @@ public class UserService {
         return res;
     }
 
+    public String deleteAllUsers() {
+        userRepo.deleteAll();
+        return "Usuarios Eliminados";
+    }
+
 
 }

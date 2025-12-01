@@ -69,5 +69,17 @@ public class UserController {
         }
     }
 
+    @DeleteMapping("eliminar_users")
+    public ResponseEntity<String> deleteAllUsers() {
+        try {
+
+            String message = userService.deleteAllUsers();
+            return ResponseEntity.ok(message);
+
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }

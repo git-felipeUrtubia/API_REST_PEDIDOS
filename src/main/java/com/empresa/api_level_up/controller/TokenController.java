@@ -45,10 +45,13 @@ public class TokenController {
             @ApiResponse(responseCode = "200", description = "Operación exitosa"),
             @ApiResponse(responseCode = "404", description = "Tokens no encontrados")
     })
-    public ResponseEntity<TokenResponseDTO.Login> findUserByEmailAndPassword(@PathVariable String email, @PathVariable String pass) {
+    public ResponseEntity<?> findUserByEmailAndPassword(@PathVariable String email, @PathVariable String pass) {
 
         try {
             TokenResponseDTO.Login body = tokenService.findUserByEmailAndPassword(email, pass);
+            if (body == null) {
+                return new ResponseEntity<>("Usuario no encontrado", HttpStatus.NOT_FOUND);
+            }
             return ResponseEntity.ok(body);
         } catch (Exception e) {
             throw new RuntimeException(e);
